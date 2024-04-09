@@ -1,7 +1,7 @@
 
 
 
-export const Bubble = ({avatar, name, message, isMine}) => {
+export const BubbleChat = ({avatar, name, message, isMine}) => {
 
     return <div className={"flex gap-5" + (isMine ? " flex-row-reverse" : " ")}>
         <div className="w-[50px] h-[50px] p-2 border border-[3px] border-black flex justify-center items-center mt-[25px]">

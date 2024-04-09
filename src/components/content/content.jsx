@@ -1,5 +1,5 @@
 import { list } from "postcss";
-import { Bubble } from "../bubble/bubble";
+import { BubbleChat } from "../bubble/bubble";
 import { useEffect, useRef } from "react";
 
 

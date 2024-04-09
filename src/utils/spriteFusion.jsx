@@ -21,16 +21,34 @@ async function loadMapSpriteFusion(mapData, pathTileset, tilesetWidthTiles, tile
         // Crear sprites para cada tile en la capa actual
         layer.tiles.forEach(tile => {
             
-            
-                layerZ.add([
-                    // quitando los dos primeros sprites que son los por defecto de kaboom js
-                    sprite(tile.id == 0 || tile.id == 1 ? tile.id +"+" : tile.id),	
-                    pos(tile.x * tileSize, tile.y * tileSize),
-                ])
+                if(layer.collider){
+                    layerZ.add([
+                        // quitando los dos primeros sprites que son los por defecto de kaboom js
+                        sprite(tile.id == 0 || tile.id == 1 ? tile.id +"+" : tile.id),	
+                        pos(tile.x * tileSize, tile.y * tileSize),
+                        area({ shape: new Rect(vec2(0, 0), 25, 25) }),
+                        body({ isStatic: true }),
+                    ])
+                }else{
+                    layerZ.add([
+                        // quitando los dos primeros sprites que son los por defecto de kaboom js
+                        sprite(tile.id == 0 || tile.id == 1 ? tile.id +"+" : tile.id),	
+                        pos(tile.x * tileSize, tile.y * tileSize),
+                    ])
+                }
+                
         });
 
         i--;
     });
+
+
+    /* add([
+        sprite("100"),
+        pos(1000,500),
+        area(),
+        body({ isStatic: true }),
+    ]) */
 }
 
 const generateSprites = (tilesX, tilesY, tileSize, pathTileset) => {

@@ -6,12 +6,12 @@ import map from '../maps/map.json'
 import { loadMapSpriteFusion } from "../utils/spriteFusion";
 export class GeneralGame{
 
-    static players = [];
-    static playerLocal;
-    static speed = 200;
-    static moveSpeed = 200;
-    static k;
-    static init (canvas){
+    players = [];
+    playerLocal;
+    speed = 200;
+    moveSpeed = 200;
+    k;
+    init (canvas){
         // inicializar kaboom
         this.k = kaboom({
             font: "pixelmix",
@@ -53,14 +53,14 @@ export class GeneralGame{
         });
     }
 
-    static initializePlayerLocal(data){
+    initializePlayerLocal(data){
         const player = add([
             z(1000),
             sprite("player"),
             scale(3),
             anchor("center"),
             pos(width()/2,height()/2),
-            area({ shape: new Rect(vec2(0, 6), 12, 12) }),
+            area({ shape: new Rect(vec2(0, 6), 10, 5) }),
             health(8),
             body(),
             {
@@ -91,7 +91,7 @@ export class GeneralGame{
     }
 
 
-    static userJoined(data){
+    userJoined(data){
         
         const player = add([
             sprite("player"),
@@ -116,12 +116,12 @@ export class GeneralGame{
         return playerObj;
     }
 
-    static async generateMap(){
+    async generateMap(){
         // cargar tiled map
         loadMapSpriteFusion(map, "../../public/assets/tilesets/spritesheet2.png", 256, 448 );
     }
 
-    static update() {
+    update() {
         // Función para mover al jugador en una dirección específica
         const movePlayer = (dir) => {
             this.playerLocal.objPlayer.move(dir.scale(this.moveSpeed));
