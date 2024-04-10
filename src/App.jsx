@@ -6,12 +6,16 @@ import { Message } from './models/message';
 import kaboom from 'kaboom';
 import { GeneralGame } from './models/general';
 import { Player } from './models/player';
+import generateBubble from './models/bubble';
 
 export const socket = io(import.meta.env.VITE_URL_BACK + ':' + import.meta.env.VITE_PORT);
 
 function App() {
   const [users, setUsers] = useState([]);
   const [generalGame, setGeneralGame] = useState(null);
+  const [msgs, setMsgs] = useState({});
+
+
 
   const usersRef = useRef(users);
   let movAnterior = null;
@@ -100,10 +104,24 @@ function App() {
       });
     }
 
+    const onMessage = ({message, playerId}) => {
+      console.log(message, playerId);
+
+      const currentUsers = usersRef.current;
+      const player = currentUsers[playerId];
+      // bubble
+      const newBubble = generateBubble(message, player.objPlayer);
+
+      player.addMessage(message);
+
+    };
+
     socket.on('put ID', createLocalPlayer);
     socket.on('user joined recept', newUserJoined);
     socket.on('user moved recept', moveUserOther);
-    socket.on('playerDisconnected', disconected)
+    socket.on('playerDisconnected', disconected);
+    socket.on('message recept', onMessage);
+
 
     return () => {
       socket.off('user joined recept', newUserJoined);
