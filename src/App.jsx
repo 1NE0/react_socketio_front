@@ -8,7 +8,7 @@ import { Player } from './models/player';
 import generateBubble from './models/bubble';
 import kaboom from "https://unpkg.com/kaboom@3000/dist/kaboom.mjs"
 
-export const socket = io(import.meta.env.VITE_URL_BACK + ':' + import.meta.env.VITE_PORT);
+export const socket = io(import.meta.env.VITE_URL_BACKEND);
 
 function App() {
   const [users, setUsers] = useState([]);
