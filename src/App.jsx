@@ -3,12 +3,12 @@ import io from 'socket.io-client';
 import ContentBody from './components/content/content';
 import FormContent from './components/form/formContent';
 import { Message } from './models/message';
-import kaboom from 'kaboom';
 import { GeneralGame } from './models/general';
 import { Player } from './models/player';
 import generateBubble from './models/bubble';
+import kaboom from "https://unpkg.com/kaboom@3000/dist/kaboom.mjs"
 
-export const socket = io(import.meta.env.VITE_URL_BACK + ':' + import.meta.env.VITE_PORT);
+export const socket = io(import.meta.env.VITE_URL_BACKEND);
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -21,6 +21,7 @@ function App() {
   let movAnterior = null;
 
   useEffect(() => {
+    kaboom()
     const gm = new GeneralGame();
     setGeneralGame(gm);
 

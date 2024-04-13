@@ -1,4 +1,3 @@
-import kaboom from "kaboom";
 import { Player } from "./player";
 import { socket } from "../App";
 import tiledKaboom from 'tiled-kaboom'
@@ -24,7 +23,7 @@ export class GeneralGame{
         })
 
         // slice a spritesheet and add anims manually
-        loadSprite("player", "/public/assets/player.png", {
+        loadSprite("player", "/assets/player.png", {
             sliceX: 4, // Número de divisiones horizontales en el spritesheet (para las 4 direcciones)
             sliceY: 4, // Número de divisiones verticales en el spritesheet (1 porque no hay sub-secciones)
             anims: {
@@ -118,7 +117,7 @@ export class GeneralGame{
 
     async generateMap(){
         // cargar tiled map
-        loadMapSpriteFusion(map, "../../public/assets/tilesets/spritesheet2.png", 256, 448 );
+        loadMapSpriteFusion(map, "/assets/tilesets/spritesheet2.png", 256, 448 );
     }
 
     update() {
